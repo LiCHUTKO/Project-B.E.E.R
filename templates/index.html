@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wybór Modelu</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin: 20px 0;
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .card-text {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">Wybierz model</h1>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Klasyfikator Gatunku Piwa</h5>
+                        <p class="card-text">Model do klasyfikacji gatunku piwa.</p>
+                        <a href="/model/klasyfikator_gatunku_piwa" class="btn btn-primary">Wybierz</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Klasyfikator Gatunku Piwa (Top 20)</h5>
+                        <p class="card-text">Model do klasyfikacji gatunku piwa (Top 20).</p>
+                        <a href="/model/klasyfikator_gatunku_piwa_top20" class="btn btn-primary">Wybierz</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Regresja Zawartości Alkoholu</h5>
+                        <p class="card-text">Model do przewidywania zawartości alkoholu.</p>
+                        <a href="/model/regresja_alkohol_piwa" class="btn btn-primary">Wybierz</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Regresja Koloru Piwa</h5>
+                        <p class="card-text">Model do przewidywania koloru piwa.</p>
+                        <a href="/model/regresja_kolor_piwa" class="btn btn-primary">Wybierz</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
