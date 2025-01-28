@@ -55,6 +55,7 @@ def index():
 @app.route('/model/<model_name>', methods=['GET', 'POST'])
 def model(model_name):
     if request.method == 'POST':
+
         if model_name in ['klasyfikator_gatunku_piwa', 'klasyfikator_gatunku_piwa_top20']:
             input_data = [float(request.form[col]) for col in numeric_columns_classification]
             input_data_scaled = scaler_classification.transform([input_data])
@@ -62,19 +63,23 @@ def model(model_name):
             prediction = model.predict(input_data_scaled)
             predicted_class = label_encoder.inverse_transform([np.argmax(prediction)])[0]
             result = f'Przewidywany gatunek piwa: {predicted_class}'
+
         elif model_name == 'regresja_alkohol_piwa':
             input_data = [float(request.form[col]) for col in numeric_columns_regression_alcohol]
             input_data_scaled = scaler_regression_alcohol.transform([input_data])
             model = models[model_name]
             prediction = model.predict(input_data_scaled)[0][0]
             result = f'Przewidywana zawartość alkoholu: {prediction:.2f}%'
+
         elif model_name == 'regresja_kolor_piwa':
             input_data = [float(request.form[col]) for col in numeric_columns_regression_color]
             input_data_scaled = scaler_regression_color.transform([input_data])
             model = models[model_name]
             prediction = model.predict(input_data_scaled)[0][0]
             result = f'Przewidywany kolor piwa: {prediction:.2f}'
+
         return render_template('model.html', model_name=model_name, result=result, input_data=request.form, piwa=piwa)
+        
     return render_template('model.html', model_name=model_name, result=None, input_data=None, piwa=piwa)
 
 if __name__ == '__main__':
