@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ model_name }}</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            margin-top: 20px;
+        }
+        .example-table {
+            margin-top: 50px;
+        }
+        .example-table th, .example-table td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center my-4">{{ model_name }}</h1>
+        <form method="post">
+            {% if model_name in ['klasyfikator_gatunku_piwa', 'klasyfikator_gatunku_piwa_top20'] %}
+                {% for col, example in {'Size(L)': 20.0, 'OG': 1.065, 'FG': 1.015, 'ABV': 6.5, 'IBU': 60, 'Color': 10, 'BoilSize': 25.0, 'BoilTime': 60, 'BoilGravity': 1.060, 'Efficiency': 75}.items() %}
+                    <div class="form-group">
+                        <label for="{{ col }}" class="form-label">{{ col }}:</label>
+                        <input type="text" class="form-control" id="{{ col }}" name="{{ col }}" value="{{ input_data[col] if input_data else example }}" placeholder="Przykład: {{ example }}">
+                    </div>
+                {% endfor %}
+            {% elif model_name == 'regresja_alkohol_piwa' %}
+                {% for col, example in {'Size(L)': 20.0, 'OG': 1.065, 'FG': 1.015, 'IBU': 60, 'Color': 10, 'BoilSize': 25.0, 'BoilTime': 60, 'BoilGravity': 1.060, 'Efficiency': 75}.items() %}
+                    <div class="form-group">
+                        <label for="{{ col }}" class="form-label">{{ col }}:</label>
+                        <input type="text" class="form-control" id="{{ col }}" name="{{ col }}" value="{{ input_data[col] if input_data else example }}" placeholder="Przykład: {{ example }}">
+                    </div>
+                {% endfor %}
+            {% elif model_name == 'regresja_kolor_piwa' %}
+                {% for col, example in {'Size(L)': 20.0, 'OG': 1.065, 'FG': 1.015, 'IBU': 60, 'ABV': 6.5, 'BoilSize': 25.0, 'BoilTime': 60, 'BoilGravity': 1.060, 'Efficiency': 75}.items() %}
+                    <div class="form-group">
+                        <label for="{{ col }}" class="form-label">{{ col }}:</label>
+                        <input type="text" class="form-control" id="{{ col }}" name="{{ col }}" value="{{ input_data[col] if input_data else example }}" placeholder="Przykład: {{ example }}">
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <button type="submit" class="btn btn-primary">Przewiduj</button>
+        </form>
+        {% if result %}
+            <h2 class="text-center my-4">Wynik: {{ result }}</h2>
+        {% endif %}
+        <div class="text-center">
+            <a href="/" class="btn btn-secondary">Powrót</a>
+        </div>
+        <div class="example-table">
+            <h2 class="text-center my-4">Przykładowe dane dla gatunków piwa</h2>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Gatunek</th>
+                        <th>Size(L)</th>
+                        <th>OG</th>
+                        <th>FG</th>
+                        <th>IBU</th>
+                        <th>ABV</th>
+                        <th>Color</th>
+                        <th>BoilSize</th>
+                        <th>BoilTime</th>
+                        <th>BoilGravity</th>
+                        <th>Efficiency</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for beer, values in piwa.items() %}
+                        <tr>
+                            <td>{{ beer }}</td>
+                            {% for value in values.values() %}
+                                <td>{{ value }}</td>
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
