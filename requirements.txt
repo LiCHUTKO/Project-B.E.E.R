@@ -7,4 +7,4 @@ matplotlib==3.9.2
 seaborn==0.13.2
 flask==3.0.3
 keras_tuner==1.4.7
-tensoboard==2.18.0
+tensorboard==2.18.0
