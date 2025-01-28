@@ -8,10 +8,10 @@ app = Flask(__name__)
 
 # Wczytanie modeli
 models = {
-    'klasyfikator_gatunku_piwa': keras.models.load_model('models/model_klasyfikacji_piwa.h5'),
-    'klasyfikator_gatunku_piwa_top20': keras.models.load_model('models/model_klasyfikacji_20_styli_piwa.h5'),
-    'regresja_alkohol_piwa': keras.models.load_model('models/model_regresji_alkoholu.h5'),
-    'regresja_kolor_piwa': keras.models.load_model('models/model_regresji_koloru_piwa.h5')
+    'klasyfikator_gatunku_piwa': keras.models.load_model('models/tuned_model_klasyfikacji_piwa.h5'),
+    'klasyfikator_gatunku_piwa_top20': keras.models.load_model('models/tuned_model_klasyfikacji_20_styli_piwa.h5'),
+    'regresja_alkohol_piwa': keras.models.load_model('models/tuned_model_regresji_alkoholu.h5'),
+    'regresja_kolor_piwa': keras.models.load_model('models/tuned_model_regresji_koloru_piwa.h5')
 }
 
 # Wczytanie danych do normalizacji
